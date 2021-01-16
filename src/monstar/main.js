@@ -66,19 +66,19 @@
         }
         .m-modal .m-icons > span:nth-child(1) {
             top: 0; 
-            left: 0
+            left: 0;
         }
         .m-modal .m-icons > span:nth-child(2) {
             bottom: 0; 
-            left: 0
+            left: 0;
         }
         .m-modal .m-icons > span:nth-child(3) {
             top: 0; 
-            right: 0
+            right: 0;
         }
         .m-modal .m-icons > span:nth-child(4) {
             bottom: 0; 
-            right: 0
+            right: 0;
         }
         .m-modal .m-summary {
             padding: 0 50px; 
