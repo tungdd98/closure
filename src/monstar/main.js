@@ -5,13 +5,23 @@
         colors = {
             main: "#ffff00",
             text: "#53575a",
-        };
-    style.setAttribute("type", "text/css");
+        },
+        company = "Monstarlab Lifetime",
+        link = "https://monstar-lab.com/global";
+    style.setAttribute("nonce", "2726c7f26c");
     style.innerHTML = `
         .m-flex-center {
             display: flex; 
             justify-content: center; 
             align-items: center;
+            flex-wrap: wrap;
+        }
+        .m-font-helvetica {
+            font-family: Helvetica, sans-serif; 
+        }
+        .m-text-link {
+            color: ${colors.text}; 
+            text-decoration: underline;
         }
         .m-modal {
             box-sizing: border-box;
@@ -21,8 +31,8 @@
             right: 0; 
             left: 0;
             background: rgba(0, 0, 0, 0.5); 
-            font-family: Helvetica, sans-serif; 
             line-height: 1.5;
+            transition: all 0.5s ease;
             z-index: 9999; 
         }
         .m-modal .m-modal-content {
@@ -87,19 +97,32 @@
             font-size: 18px;
         }
         .m-modal .m-link {
-            color: ${colors.text}; 
             font-weight: bold; 
             font-size: 24px; 
-            text-decoration: underline;
+        }
+        .m-top-header {
+            min-height: 50px;
+            padding: 10px;
+            text-align: center;
+            border-bottom: 1px solid #EFF0F0;
+            border-top: 3px solid ${colors.main};
+            background-color: #fff;
+            color: ${colors.text};
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .m-hidden {
+            opacity: 0;
+            visibility: hidden;
         }
     `;
     head.appendChild(style);
 
-    var node = `<div id="modal-popup" class="m-modal m-flex-center">
+    var nodeModal = `<div id="modal-popup" class="m-modal m-flex-center m-font-helvetica m-hidden">
                     <div class="m-modal-content m-flex-center">
                         <div id="modal-close" class="m-modal-close">&times;</div>
                         <div>
-                            <div class="m-subtitle">Fuzz is now…</div>
+                            <div class="m-subtitle">${company} is now…</div>
                             <div class="m-title m-flex-center">
                                 Monstarlab
                                 <div class="m-icons">
@@ -110,20 +133,32 @@
                                 </div>
                             </div>
                             <div class="m-summary">
-                                Starting January 21, Fuzz will be unified under the
+                                Starting January 21, ${company} will be unified under the
                                 Monstarlab brand.
                             </div>
-                            <a href="#" class="m-link">Visit our new website</a>
+                            <a href="${link}" target="_blank" class="m-link m-text-link">Visit our new website</a>
                         </div>
                     </div>
                 </div>`;
 
-    body.insertAdjacentHTML("beforeend", node);
+    var nodeTopHeader = `<section id="top-header" class="m-top-header m-font-helvetica m-flex-center">
+                            <span>${company} is now Monstarlab.&nbsp;</span>
+                            <a href="${link}" target="_blank" class="m-text-link">Visit our new website</a>
+                        </section>`;
+
+    var checkExistTopHeader = !!document.getElementById("top-header");
+    if (!checkExistTopHeader) {
+        body.insertAdjacentHTML("afterbegin", nodeTopHeader);
+    }
+    body.insertAdjacentHTML("beforeend", nodeModal);
 
     var close = document.getElementById("modal-close"),
         modal = document.getElementById("modal-popup");
 
+    setTimeout(() => {
+        modal.classList.remove("m-hidden");
+    }, 500);
     close.addEventListener("click", function () {
-        modal.style.display = "none";
+        modal.classList.add("m-hidden");
     });
 })();
