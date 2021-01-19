@@ -34,6 +34,7 @@
                             <span>${configs.company} is now Monstarlab.&nbsp;</span>
                             <a href="${configs.link}" target="_blank">Visit our new website</a>
                         </section>`;
+
     configs.body.insertAdjacentHTML("beforeend", elmModal);
 
     var modal = document.getElementById("modal");
@@ -207,6 +208,4 @@
         nodesModal.modal.style.opacity = 0;
         nodesModal.modal.style.visibility = "hidden";
     });
-
-    configs.body.insertAdjacentElement("beforeend", modal);
 })();
